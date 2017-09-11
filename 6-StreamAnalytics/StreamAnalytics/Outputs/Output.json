@@ -1,0 +1,24 @@
+﻿{
+  "Name": "Output",
+  "DataSourceType": "Service Bus Queue",
+  "EventHubProperties": null,
+  "BlobStorageProperties": null,
+  "SQLDatabaseProperties": null,
+  "TableStorageProperties": null,
+  "ServiceBusQueueProperties": {
+    "QueueName": "dashboardqueue",
+    "ServiceBusNamespace": "meetupservicebus",
+    "SharedAccessPolicyKey": null,
+    "SharedAccessPolicyName": "RootManageSharedAccessKey"
+  },
+  "ServiceBusTopicProperties": null,
+  "DocumentDbProperties": null,
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated"
+  },
+  "DataSourceCredentialDomain": "d8a239df-d22a-436c-98b0-211ef5d7320a.StreamAnalyticsCredential",
+  "ScriptType": "Output"
+}

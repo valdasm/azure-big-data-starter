@@ -1,0 +1,3 @@
+﻿select * into output from input;
+
+select carid, devicetime into outputdb from input;

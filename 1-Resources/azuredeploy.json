@@ -1,0 +1,317 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionName": {
+      "type": "string",
+      "metadata": {
+        "description": "Subscription Name"
+      }
+    },
+    "resourcesGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource Group Name"
+      }
+    },
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Blob Storage account name"
+      }
+    },
+    "resourcesGroupLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource Group Location"
+      }
+    },
+    "namespaceName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the EventHub namespace"
+      }
+    },
+    "eventHubName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Event Hub"
+      }
+    },
+    "serviceBusNamespaceName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Service Bus namespace"
+      }
+    },
+    "serviceBusQueueName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Queue"
+      }
+    },
+    "serviceBusApiVersion": {
+      "type": "string",
+      "defaultValue": "2015-08-01",
+      "metadata": {
+        "description": "Service Bus ApiVersion used by the template"
+      }
+    },
+    "streamAnalyticsJobName": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 63,
+      "metadata": {
+        "description": "Stream Analytics Job Name, can contain alphanumeric characters and hypen and must be 3-63 characters long"
+      }
+    },
+    "sqlServerName": {
+      "type": "string",
+      "metadata": {
+        "description": "SQL Server Name"
+      }
+    },
+    "sqlDBName": {
+      "type": "string",
+      "metadata": {
+        "description": "SQL Database Name"
+      }
+    },
+    "sqlDBAdminName": {
+      "type": "string",
+      "metadata": {
+        "description": "Sql User Name"
+      }
+    },
+    "sqlAdminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Sql DB Password"
+      }
+    },
+    "sqlDBStartIpAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "SQL firewall start IP"
+      }
+    },
+    "sqlDBEndIpAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "SQL firewall start IP"
+      }
+    },
+    "appServiceName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10
+    },
+    "websiteName": {
+      "type": "string",
+      "metadata": {
+        "description": "Website name"
+      }
+    },
+    "appServicePlanSkuName": {
+      "type": "string",
+      "defaultValue": "S1",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "metadata": {
+        "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+      }
+    }
+
+  },
+  "variables": {
+    "defaultSASKeyName": "RootManageSharedAccessKey",
+    "eventHubResourceId": "[resourceId('Microsoft.EventHub/namespaces/authorizationRules', parameters('namespaceName'), variables('defaultSASKeyName'))]",
+    "ehVersion": "2017-04-01",
+    "sbVersion": "[parameters('serviceBusApiVersion')]",
+    "serviceBusResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
+    "storageVersion": "2016-01-01",
+    "storageResourceId": "[resourceId('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
+    
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('storageAccountName')]",
+      "apiVersion": "2016-01-01",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "Storage",
+      "properties": {}
+    },
+    {
+      "apiVersion": "2017-04-01",
+      "name": "[parameters('namespaceName')]",
+      "type": "Microsoft.EventHub/Namespaces",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "sku": {
+        "name": "Standard"
+      },
+      "properties": {
+        "isAutoInflateEnabled": "true",
+        "maximumThroughputUnits": "20"
+      },
+      "resources": [
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('eventHubName')]",
+          "type": "EventHubs",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', parameters('namespaceName'))]"
+          ],
+          "properties": {
+            "messageRetentionInDays": "7",
+            "partitionCount": "4"
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "[variables('sbVersion')]",
+      "name": "[parameters('serviceBusNamespaceName')]",
+      "type": "Microsoft.ServiceBus/Namespaces",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "kind": "Messaging",
+      "sku": {
+        "name": "StandardSku",
+        "tier": "Standard"
+      },
+      "resources": [
+        {
+          "apiVersion": "[variables('sbVersion')]",
+          "name": "[parameters('serviceBusQueueName')]",
+          "type": "Queues",
+          "dependsOn": [
+            "[concat('Microsoft.ServiceBus/namespaces/', parameters('serviceBusNamespaceName'))]"
+          ],
+          "properties": {
+            "path": "[parameters('serviceBusQueueName')]"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/StreamingJobs",
+      "apiVersion": "2016-03-01",
+      "name": "[parameters('streamAnalyticsJobName')]",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "properties": {
+        "sku": {
+          "name": "standard"
+        },
+        "outputErrorPolicy": "stop",
+        "eventsOutOfOrderPolicy": "adjust",
+        "eventsOutOfOrderMaxDelayInSeconds": 0,
+        "eventsLateArrivalMaxDelayInSeconds": 5,
+        "dataLocale": "en-US"
+      }
+    },
+    {
+      "name": "[parameters('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "apiVersion": "2014-04-01",
+      "properties": {
+        "administratorLogin": "[parameters('sqlDBAdminName')]",
+        "administratorLoginPassword": "[parameters('sqlAdminPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "name": "[parameters('sqlDBName')]",
+          "type": "databases",
+          "location": "[parameters('resourcesGroupLocation')]",
+          "apiVersion": "2014-04-01",
+
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]"
+          ],
+          "properties": {
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "edition": "Basic",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "Basic"
+
+          }
+        },
+        {
+          "apiVersion": "2014-04-01",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]"
+          ],
+          "location": "[parameters('resourcesGroupLocation')]",
+          "name": "AllowAllAzureIps",
+          "properties": {
+            "endIpAddress": "[parameters('sqlDBEndIpAddress')]",
+            "startIpAddress": "[parameters('sqlDBStartIpAddress')]"
+          },
+          "type": "firewallrules"
+        }
+      ]
+    },
+    {
+      "name": "[parameters('appServiceName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "apiVersion": "2015-08-01",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "dependsOn": [],
+      "tags": {
+        "displayName": "appServicePlan"
+      },
+      "properties": {
+        "name": "[parameters('appServiceName')]",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "name": "[parameters('websiteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "apiVersion": "2015-08-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('appServiceName'))]"
+      ],
+
+      "properties": {
+        "name": "[parameters('websiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServiceName'))]"
+      }
+    }
+  ],
+  "outputs": {
+    "EventHubConnString": {
+      "type": "string",
+      "value": "[listkeys(variables('eventHubResourceId'), variables('ehVersion')).primaryConnectionString]"
+    },
+    "ServiceBusConnString": {
+      "type": "string",
+      "value": "[listkeys(variables('serviceBusResourceId'), variables('sbVersion')).primaryConnectionString]"
+    },
+    "storageAccountKey": {
+      "type": "string",
+      "value": "[listKeys(variables('storageResourceId'), variables('storageVersion')).keys[0].value]"
+    }
+
+  }
+}

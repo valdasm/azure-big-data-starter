@@ -1,0 +1,63 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionName": {
+      "value": "Free Trial"
+    },
+    "resourcesGroupName": {
+      "value": "StreamAnalyticsDemo"
+    },
+    "resourcesGroupLocation": {
+      "value": "westeurope"
+    },
+    "storageAccountName": {
+      "value": "valdasstore"
+    },
+    "namespaceName": {
+      "value": "meetupeventhub"
+    },
+    "eventHubName": {
+      "value": "carshub"
+    },
+    "serviceBusNamespaceName": {
+      "value": "meetupservicebus"
+    },
+    "serviceBusQueueName": {
+      "value": "dashboardqueue"
+    },
+    "serviceBusApiVersion": {
+      "value": "2015-08-01"
+    },
+    "streamAnalyticsJobName": {
+      "value": "ridesasajob"
+    },
+    "sqlServerName": {
+      "value": "carsqlserver"
+    },
+    "sqlDBName": {
+      "value": "streamingdb"
+    },
+    "sqlDBAdminName": {
+      "value": "servadmin"
+    },
+    "sqlAdminPassword": {
+      "value": "yourpassword"
+    },
+    "sqlDBStartIpAddress": {
+      "value": "0.0.0.0"
+    },
+    "sqlDBEndIpAddress": {
+      "value": "0.0.0.0"
+    },
+    "appServiceName": {
+      "value": "eventsApps"
+    },
+    "websiteName": {
+      "value": "meetupasa2"
+    },
+    "appServicePlanSkuName": {
+      "value": "F1"
+    }
+  }
+}

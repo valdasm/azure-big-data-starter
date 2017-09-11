@@ -1,0 +1,25 @@
+﻿{
+  "Name": "OutputDb",
+  "DataSourceType": "SQL Database",
+  "EventHubProperties": null,
+  "BlobStorageProperties": null,
+  "SQLDatabaseProperties": {
+    "Database": "streamingdb",
+    "Password": null,
+    "Server": "carsqlserver.database.windows.net",
+    "Table": "dbo.Car_Health_Status",
+    "User": "servadmin"
+  },
+  "TableStorageProperties": null,
+  "ServiceBusQueueProperties": null,
+  "ServiceBusTopicProperties": null,
+  "DocumentDbProperties": null,
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated"
+  },
+  "DataSourceCredentialDomain": "0f946e1a-de9f-47b9-867f-c3587a1a2517.StreamAnalyticsCredential",
+  "ScriptType": "Output"
+}

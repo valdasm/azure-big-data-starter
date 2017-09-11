@@ -1,0 +1,9 @@
+﻿{
+  "DataLocale": "en-US",
+  "OutputErrorPolicy": "Retry",
+  "EventsLateArrivalMaxDelayInSeconds": 5,
+  "EventsOutOfOrderMaxDelayInSeconds": 0,
+  "EventsOutOfOrderPolicy": "Adjust",
+  "StreamingUnits": 1,
+  "ScriptType": "JobConfig"
+}

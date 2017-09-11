@@ -1,0 +1,14 @@
+{
+    "eventHubConnString":  {
+                               "Type":  "String",
+                               "Value":  ""
+                           },
+    "serviceBusConnString":  {
+                                 "Type":  "String",
+                                 "Value":  ""
+                             },
+    "storageAccountKey":  {
+                              "Type":  "String",
+                              "Value":  ""
+                          }
+}

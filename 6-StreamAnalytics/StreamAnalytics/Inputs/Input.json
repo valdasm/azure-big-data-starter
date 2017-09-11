@@ -1,0 +1,24 @@
+﻿{
+  "Name": "Input",
+  "Type": "Data Stream",
+  "DataSourceType": "Event Hub",
+  "Sample": null,
+  "EventHubProperties": {
+    "ConsumerGroupName": null,
+    "EventHubName": "carshub",
+    "ServiceBusNamespace": "meetupeventhub",
+    "SharedAccessPolicyKey": null,
+    "SharedAccessPolicyName": "RootManageSharedAccessKey"
+  },
+  "BlobStorageProperties": null,
+  "IoTHubProperties": null,
+  "BlobReferenceProperties": null,
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated"
+  },
+  "DataSourceCredentialDomain": "42a17529-a7ed-4f7f-b6f4-622afedb5df4.StreamAnalyticsCredential",
+  "ScriptType": "Input"
+}
