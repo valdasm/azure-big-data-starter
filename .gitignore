@@ -13,6 +13,8 @@
 #Configs
 1-Resources/azuredeploy.parameters.json
 1-Resources/output.parameters.json
+*.config
+
 
 # Build results
 [Dd]ebug/
