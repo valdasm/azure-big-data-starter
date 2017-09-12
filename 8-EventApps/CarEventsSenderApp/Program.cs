@@ -13,7 +13,7 @@ namespace azure_patterns_big_data
             var logReader = new LogReader();
 
             var deserializedObjects = 
-                logReader.FileToDto<CarEventsDto>("Data\\Ride.csv");
+                logReader.FileToDto<CarEventsDto>("..\\..\\..\\..\\1-Resources\\Data\\Ride.csv");
 
             var ehSender = new EventHubSender();
 

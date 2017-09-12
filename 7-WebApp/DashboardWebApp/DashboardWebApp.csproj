@@ -304,7 +304,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\99-Common\Models\Models.csproj">
+    <ProjectReference Include="..\..\7-EventApps\Models\Models.csproj">
       <Project>{17b74260-bf7d-47ec-a56f-4534f62365a9}</Project>
       <Name>Models</Name>
     </ProjectReference>

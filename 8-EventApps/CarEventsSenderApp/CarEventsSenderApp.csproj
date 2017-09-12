@@ -78,9 +78,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\Ride.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +85,7 @@
     <Content Include="Queries.sql" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\99-Common\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Models.csproj">
       <Project>{17b74260-bf7d-47ec-a56f-4534f62365a9}</Project>
       <Name>Models</Name>
     </ProjectReference>

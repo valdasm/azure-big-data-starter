@@ -132,7 +132,20 @@
       "metadata": {
         "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
       }
+    },
+    "dataFactoryName": {
+      "type": "string",
+      "metadata": {
+        "description": "Data Factory name"
+      }
+    },
+    "dataFactoryLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "Data Factory Location"
+      }
     }
+
 
   },
   "variables": {
@@ -297,6 +310,12 @@
         "name": "[parameters('websiteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServiceName'))]"
       }
+    },
+    {
+      "name": "[parameters('dataFactoryName')]",
+      "apiVersion": "2015-10-01",
+      "type": "Microsoft.DataFactory/datafactories",
+      "location": "[parameters('dataFactoryLocation')]"
     }
   ],
   "outputs": {

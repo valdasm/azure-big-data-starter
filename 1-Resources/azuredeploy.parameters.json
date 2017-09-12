@@ -58,6 +58,12 @@
     },
     "appServicePlanSkuName": {
       "value": "F1"
+    },
+    "dataFactoryName": {
+      "value": "dfmeetup"
+    },
+    "dataFactoryLocation": {
+      "value": "North Europe"
     }
   }
 }

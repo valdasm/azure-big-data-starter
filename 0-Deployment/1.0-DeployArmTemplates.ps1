@@ -7,11 +7,9 @@
 # 1. Read azuredeploy.json with parameters saved in azuredeploy.parameters.json
 # 2. Save output from azuredeploy.json into output.parameters.json
 # 
-# TODO:
-# 1. Populate config files
-#
 #
 ##########################
+
 Param(
     [string] $TemplateFile = '..\1-Resources\azuredeploy.json',
     [string] $TemplateParametersFile = '..\1-Resources\azuredeploy.parameters.json',
@@ -77,3 +75,5 @@ else {
         Write-Output '', 'Template deployment returned the following errors:', @(@($ErrorMessages) | ForEach-Object { $_.Exception.Message.TrimEnd("`r`n") })
     }
 }
+
+

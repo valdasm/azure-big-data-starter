@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Deployment", "0-Deployment", "{F404A1D5-8828-424C-A1D8-24EA28E8CDEA}"
 	ProjectSection(SolutionItems) = preProject
-		0-Deployment\1-DeployArmTemplates.ps1 = 0-Deployment\1-DeployArmTemplates.ps1
+		0-Deployment\1.0-DeployArmTemplates.ps1 = 0-Deployment\1.0-DeployArmTemplates.ps1
+		0-Deployment\1.1-PopulateConfigs.ps1 = 0-Deployment\1.1-PopulateConfigs.ps1
+		0-Deployment\1.2-CopyDataToStorage.ps1 = 0-Deployment\1.2-CopyDataToStorage.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Resources", "1-Resources", "{96263B3F-193E-46B1-A888-BF5C7CBE61B2}"
@@ -25,13 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-MachineLearning", "5-Mach
 EndProject
 Project("{E6C563F2-BDC2-4A24-ACBF-01715157DCBB}") = "6-StreamAnalytics", "6-StreamAnalytics\StreamAnalytics\6-StreamAnalytics.asaproj", "{383FB1B7-1550-46D0-865A-F1B1F82740EC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7-EventApps", "7-EventApps", "{A3DA4BDF-987E-45C3-9440-ED56E19408A2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-EventApps", "8-EventApps", "{A3DA4BDF-987E-45C3-9440-ED56E19408A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEventsSenderApp", "7-EventApps\CarEventsSenderApp\CarEventsSenderApp.csproj", "{8E1B73B9-7757-4CD8-8F29-790F4A3BF013}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEventsSenderApp", "8-EventApps\CarEventsSenderApp\CarEventsSenderApp.csproj", "{8E1B73B9-7757-4CD8-8F29-790F4A3BF013}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDbUp", "2-SqlServer\SqlDbUp\SqlDbUp.csproj", "{FA55B4AD-2425-49B0-A7C3-3BFF37DF433A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99-Common", "99-Common", "{4FDA7D84-329F-4B17-A7C2-8AAB4C89CE85}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59341BB0-0476-4D00-80FA-3074A6FB2207}"
 	ProjectSection(SolutionItems) = preProject
@@ -39,16 +39,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-WebApp", "8-WebApp", "{0BE3DD9A-4C0D-4C03-8AA1-AA8B4CA50B39}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7-WebApp", "7-WebApp", "{0BE3DD9A-4C0D-4C03-8AA1-AA8B4CA50B39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "8-WebApp\WebApplication1\WebApplication1.csproj", "{D4C34790-1BBC-4477-B337-FEA8C5223E7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardWebApp", "7-WebApp\DashboardWebApp\DashboardWebApp.csproj", "{D4C34790-1BBC-4477-B337-FEA8C5223E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "99-Common\Models\Models.csproj", "{17B74260-BF7D-47EC-A56F-4534F62365A9}"
+Project("{3466B219-07DB-46AE-8697-CFD2A1650EC8}") = "DataOrchestrator", "4-DataFactory\DataOrchestrator\DataOrchestrator.dfproj", "{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8F1E7828-A04A-4B42-B924-C43AB065B332}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "8-EventApps\Models\Models.csproj", "{17B74260-BF7D-47EC-A56F-4534F62365A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F27B0681-CFC7-49CA-ADD7-50E517158C63}"
 	ProjectSection(SolutionItems) = preProject
-		99-Common\Data\car_info.csv = 99-Common\Data\car_info.csv
-		99-Common\Data\ride.csv = 99-Common\Data\ride.csv
+		Data\car_info.csv = Data\car_info.csv
+		Data\ride.csv = Data\ride.csv
 	EndProjectSection
 EndProject
 Global
@@ -109,6 +111,14 @@ Global
 		{D4C34790-1BBC-4477-B337-FEA8C5223E7B}.Release|x64.Build.0 = Release|Any CPU
 		{D4C34790-1BBC-4477-B337-FEA8C5223E7B}.Release|x86.ActiveCfg = Release|Any CPU
 		{D4C34790-1BBC-4477-B337-FEA8C5223E7B}.Release|x86.Build.0 = Release|Any CPU
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Debug|x64.ActiveCfg = Debug|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Debug|x86.ActiveCfg = Debug|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Debug|x86.Build.0 = Debug|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Release|Any CPU.ActiveCfg = Release|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Release|x64.ActiveCfg = Release|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Release|x86.ActiveCfg = Release|x86
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA}.Release|x86.Build.0 = Release|x86
 		{17B74260-BF7D-47EC-A56F-4534F62365A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17B74260-BF7D-47EC-A56F-4534F62365A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B74260-BF7D-47EC-A56F-4534F62365A9}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -129,7 +139,7 @@ Global
 		{8E1B73B9-7757-4CD8-8F29-790F4A3BF013} = {A3DA4BDF-987E-45C3-9440-ED56E19408A2}
 		{FA55B4AD-2425-49B0-A7C3-3BFF37DF433A} = {D3570A99-2331-491E-A3A2-8E14A04BB04C}
 		{D4C34790-1BBC-4477-B337-FEA8C5223E7B} = {0BE3DD9A-4C0D-4C03-8AA1-AA8B4CA50B39}
-		{17B74260-BF7D-47EC-A56F-4534F62365A9} = {4FDA7D84-329F-4B17-A7C2-8AAB4C89CE85}
-		{8F1E7828-A04A-4B42-B924-C43AB065B332} = {4FDA7D84-329F-4B17-A7C2-8AAB4C89CE85}
+		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA} = {FE17A7A8-E821-49F4-9065-DD2DD3EB9061}
+		{17B74260-BF7D-47EC-A56F-4534F62365A9} = {A3DA4BDF-987E-45C3-9440-ED56E19408A2}
 	EndGlobalSection
 EndGlobal

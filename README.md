@@ -1,3 +1,5 @@
+https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/big-data
+
 # StreamAnalyticsDemo
 
 One Paragraph of project description goes here

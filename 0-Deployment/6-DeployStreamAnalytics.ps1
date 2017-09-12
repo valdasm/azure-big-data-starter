@@ -1,0 +1,6 @@
+
+##########################
+#
+# Deploys StreamAnalytics application
+#
+##########################
