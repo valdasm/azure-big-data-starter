@@ -12,37 +12,37 @@
       "value": "westeurope"
     },
     "storageAccountName": {
-      "value": "valdasstore"
+      "value": ""
     },
     "namespaceName": {
-      "value": "meetupeventhub"
+      "value": ""
     },
     "eventHubName": {
-      "value": "carshub"
+      "value": ""
     },
     "serviceBusNamespaceName": {
-      "value": "meetupservicebus"
+      "value": ""
     },
     "serviceBusQueueName": {
-      "value": "dashboardqueue"
+      "value": ""
     },
     "serviceBusApiVersion": {
       "value": "2015-08-01"
     },
     "streamAnalyticsJobName": {
-      "value": "ridesasajob"
+      "value": ""
     },
     "sqlServerName": {
-      "value": "carsqlserver"
+      "value": ""
     },
     "sqlDBName": {
       "value": "streamingdb"
     },
     "sqlDBAdminName": {
-      "value": "servadmin"
+      "value": ""
     },
     "sqlAdminPassword": {
-      "value": "yourpassword"
+      "value": ""
     },
     "sqlDBStartIpAddress": {
       "value": "0.0.0.0"
@@ -51,16 +51,16 @@
       "value": "0.0.0.0"
     },
     "appServiceName": {
-      "value": "eventsApps"
+      "value": ""
     },
     "websiteName": {
-      "value": "meetupasa2"
+      "value": ""
     },
     "appServicePlanSkuName": {
       "value": "F1"
     },
     "dataFactoryName": {
-      "value": "dfmeetup"
+      "value": ""
     },
     "dataFactoryLocation": {
       "value": "North Europe"

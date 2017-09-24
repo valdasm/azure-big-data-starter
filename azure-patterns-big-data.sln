@@ -5,9 +5,14 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Deployment", "0-Deployment", "{F404A1D5-8828-424C-A1D8-24EA28E8CDEA}"
 	ProjectSection(SolutionItems) = preProject
+		0-Deployment\0-DeployAll.ps1 = 0-Deployment\0-DeployAll.ps1
 		0-Deployment\1.0-DeployArmTemplates.ps1 = 0-Deployment\1.0-DeployArmTemplates.ps1
 		0-Deployment\1.1-PopulateConfigs.ps1 = 0-Deployment\1.1-PopulateConfigs.ps1
 		0-Deployment\1.2-CopyDataToStorage.ps1 = 0-Deployment\1.2-CopyDataToStorage.ps1
+		0-Deployment\2-DeploySqlServer.ps1 = 0-Deployment\2-DeploySqlServer.ps1
+		0-Deployment\4-DeployDataFactory.ps1 = 0-Deployment\4-DeployDataFactory.ps1
+		0-Deployment\6-DeployStreamAnalytics.ps1 = 0-Deployment\6-DeployStreamAnalytics.ps1
+		0-Deployment\7-DeployWebApp.ps1 = 0-Deployment\7-DeployWebApp.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Resources", "1-Resources", "{96263B3F-193E-46B1-A888-BF5C7CBE61B2}"
@@ -47,10 +52,10 @@ Project("{3466B219-07DB-46AE-8697-CFD2A1650EC8}") = "DataOrchestrator", "4-DataF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "8-EventApps\Models\Models.csproj", "{17B74260-BF7D-47EC-A56F-4534F62365A9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F27B0681-CFC7-49CA-ADD7-50E517158C63}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{360FB39E-A625-470F-8F19-A96B968023E8}"
 	ProjectSection(SolutionItems) = preProject
-		Data\car_info.csv = Data\car_info.csv
-		Data\ride.csv = Data\ride.csv
+		1-Resources\Data\car_info.csv = 1-Resources\Data\car_info.csv
+		1-Resources\Data\ride.csv = 1-Resources\Data\ride.csv
 	EndProjectSection
 EndProject
 Global
@@ -141,5 +146,6 @@ Global
 		{D4C34790-1BBC-4477-B337-FEA8C5223E7B} = {0BE3DD9A-4C0D-4C03-8AA1-AA8B4CA50B39}
 		{0DF137C7-E2EA-426C-AE9F-EAD5A0144CEA} = {FE17A7A8-E821-49F4-9065-DD2DD3EB9061}
 		{17B74260-BF7D-47EC-A56F-4534F62365A9} = {A3DA4BDF-987E-45C3-9440-ED56E19408A2}
+		{360FB39E-A625-470F-8F19-A96B968023E8} = {96263B3F-193E-46B1-A888-BF5C7CBE61B2}
 	EndGlobalSection
 EndGlobal

@@ -242,6 +242,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Azure.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\PublishProfiles\meetupasa - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gmaps.js" />
@@ -304,7 +307,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\7-EventApps\Models\Models.csproj">
+    <ProjectReference Include="..\..\8-EventApps\Models\Models.csproj">
       <Project>{17b74260-bf7d-47ec-a56f-4534f62365a9}</Project>
       <Name>Models</Name>
     </ProjectReference>

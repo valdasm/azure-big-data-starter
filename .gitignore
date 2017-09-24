@@ -11,9 +11,9 @@
 *.userprefs
 
 #Configs
-#1-Resources/azuredeploy.parameters.json
-#1-Resources/output.parameters.json
-#*.config
+1-Resources/azuredeploy.parameters.json
+1-Resources/output.parameters.json
+Azure.config
 
 
 # Build results

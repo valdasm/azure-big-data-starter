@@ -16,8 +16,8 @@ namespace azure_patterns_big_data.Utils
 
         public EventHubSender()
         {
-            var ehConnectionString = ConfigurationManager.AppSettings["EhConnectionString"];
-            var ehName = ConfigurationManager.AppSettings["EhName"];
+            var ehConnectionString = ConfigurationManager.AppSettings["EventHubConnectionString"];
+            var ehName = ConfigurationManager.AppSettings["EventHubName"];
 
             var connectionStringBuilder = new EventHubsConnectionStringBuilder(ehConnectionString)
             {

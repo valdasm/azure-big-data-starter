@@ -18,7 +18,7 @@ namespace WebApplication1.Hub
             QueueClient _queueClient;
 
             var queueConnectionString = ConfigurationManager.AppSettings["ServiceBusConnectionString"];
-            var queueName = ConfigurationManager.AppSettings["QueueName"];
+            var queueName = ConfigurationManager.AppSettings["ServiceBusQueueName"];
 
             _queueClient = QueueClient.CreateFromConnectionString(queueConnectionString, queueName);
 
