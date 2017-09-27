@@ -20,6 +20,12 @@
         "description": "Blob Storage account name"
       }
     },
+    "storageContainerName": {
+      "type": "string",
+      "metadata": {
+        "description": "Blob Storage container name. Used in a powershell script"
+      }
+    },
     "resourcesGroupLocation": {
       "type": "string",
       "metadata": {
@@ -71,19 +77,19 @@
         "description": "SQL Server Name"
       }
     },
-    "sqlDBName": {
+    "sqlDWDBName": {
       "type": "string",
       "metadata": {
         "description": "SQL Database Name"
       }
     },
-    "sqlDBAdminName": {
+    "sqlDWDBAdminName": {
       "type": "string",
       "metadata": {
         "description": "Sql User Name"
       }
     },
-    "sqlAdminPassword": {
+    "sqlDWAdminPassword": {
       "type": "securestring",
       "metadata": {
         "description": "Sql DB Password"
@@ -243,13 +249,13 @@
       "location": "[parameters('resourcesGroupLocation')]",
       "apiVersion": "2014-04-01",
       "properties": {
-        "administratorLogin": "[parameters('sqlDBAdminName')]",
-        "administratorLoginPassword": "[parameters('sqlAdminPassword')]",
+        "administratorLogin": "[parameters('sqlDWDBAdminName')]",
+        "administratorLoginPassword": "[parameters('sqlDWAdminPassword')]",
         "version": "12.0"
       },
       "resources": [
         {
-          "name": "[parameters('sqlDBName')]",
+          "name": "[parameters('sqlDWDBName')]",
           "type": "databases",
           "location": "[parameters('resourcesGroupLocation')]",
           "apiVersion": "2014-04-01",
@@ -259,9 +265,7 @@
           ],
           "properties": {
             "collation": "SQL_Latin1_General_CP1_CI_AS",
-            "edition": "Basic",
-            "maxSizeBytes": "1073741824",
-            "requestedServiceObjectiveName": "Basic"
+            "edition": "DataWarehouse"
 
           }
         },

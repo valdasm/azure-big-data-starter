@@ -14,6 +14,9 @@
     "storageAccountName": {
       "value": ""
     },
+	"storageContainerName": {
+      "value": "data"
+    },
     "namespaceName": {
       "value": ""
     },
@@ -35,13 +38,13 @@
     "sqlServerName": {
       "value": ""
     },
-    "sqlDBName": {
+    "sqlDWDBName": {
       "value": "streamingdb"
     },
-    "sqlDBAdminName": {
+    "sqlDWDBAdminName": {
       "value": ""
     },
-    "sqlAdminPassword": {
+    "sqlDWAdminPassword": {
       "value": ""
     },
     "sqlDBStartIpAddress": {

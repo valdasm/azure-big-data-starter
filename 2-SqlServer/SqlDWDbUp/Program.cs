@@ -20,9 +20,13 @@ namespace DataWarehouseDbUp
             //DeployChanges.To
             //        .AzureSqlDwDatabase(connectionString)
 
+            //Regular SQL DB
+            //DeployChanges.To
+            //        .SqlDatabase(connectionString)
+
             var upgrader =
                 DeployChanges.To
-                    .SqlDatabase(connectionString)
+                    .AzureSqlDwDatabase(connectionString)
                     .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
                     .LogToConsole()
                     .Build();

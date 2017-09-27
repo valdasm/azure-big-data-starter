@@ -36,7 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-EventApps", "8-EventApps"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarEventsSenderApp", "8-EventApps\CarEventsSenderApp\CarEventsSenderApp.csproj", "{8E1B73B9-7757-4CD8-8F29-790F4A3BF013}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDbUp", "2-SqlServer\SqlDbUp\SqlDbUp.csproj", "{FA55B4AD-2425-49B0-A7C3-3BFF37DF433A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDbUp", "2-SqlServer\SqlDWDbUp\SqlDWDbUp.csproj", "{FA55B4AD-2425-49B0-A7C3-3BFF37DF433A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59341BB0-0476-4D00-80FA-3074A6FB2207}"
 	ProjectSection(SolutionItems) = preProject

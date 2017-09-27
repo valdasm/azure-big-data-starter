@@ -19,8 +19,8 @@ Param(
 $TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
 $OutputParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $OutputParametersFile))
 
-$JsonTemplateParams = Get-Content -Raw -Path $TemplateParametersFile | ConvertFrom-Json 
-$JsonOutputParam = Get-Content -Raw -Path $OutputParametersFile | ConvertFrom-Json 
+$TemplateParamsJson = Get-Content -Raw -Path $TemplateParametersFile | ConvertFrom-Json 
+$OutputParamsJson = Get-Content -Raw -Path $OutputParametersFile | ConvertFrom-Json 
 
 #######################################
 #
@@ -30,10 +30,10 @@ $JsonOutputParam = Get-Content -Raw -Path $OutputParametersFile | ConvertFrom-Js
 #######################################
 
 #Fetch config values from Template Parameters file
-$ServerInstance = $JsonTemplateParams.parameters.sqlServerName.value
-$DatabaseName = $JsonTemplateParams.parameters.sqlDBName.value
-$DatabaseUser = $JsonTemplateParams.parameters.sqlDBAdminName.value
-$DatabasePassword = $JsonTemplateParams.parameters.sqlAdminPassword.value
+$ServerInstance = $TemplateParamsJson.parameters.sqlServerName.value
+$DatabaseName = $TemplateParamsJson.parameters.sqlDWDBName.value
+$DatabaseUser = $TemplateParamsJson.parameters.sqlDWDBAdminName.value
+$DatabasePassword = $TemplateParamsJson.parameters.sqlDWAdminPassword.value
 
 #Load application XML configuration file
 $SqlServerConfigFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $SqlServerConfigFile))
@@ -62,8 +62,8 @@ $SqlServerXml.Save($SqlServerConfigFile)
 
 
 #Fetch config values from Template Parameters and Output files
-$QueueName = $JsonTemplateParams.parameters.serviceBusQueueName.value
-$ServiceHubConnectionString = $JsonOutputParam.serviceBusConnString.value
+$QueueName = $TemplateParamsJson.parameters.serviceBusQueueName.value
+$ServiceHubConnectionString = $OutputParamsJson.serviceBusConnString.value
 
 #Load application XML configuration file
 $WebAppConfigFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $WebAppConfigFile))
@@ -86,8 +86,8 @@ $WebAppXml.Save($WebAppConfigFile)
 
 
 #Fetch config values from Template Parameters and Output files
-$EhName = $JsonTemplateParams.parameters.eventHubName.value
-$EhConnectionString = $JsonOutputParam.eventHubConnString.value
+$EhName = $TemplateParamsJson.parameters.eventHubName.value
+$EhConnectionString = $OutputParamsJson.eventHubConnString.value
 
 #Load application XML configuration file
 $EventHubConfigFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $EventHubConfigFile))
