@@ -1,12 +1,9 @@
-#Requires -Version 3.0
-#Requires -Module AzureRM.Resources
-#Requires -Module Azure.Storage
 ##########################
 #
 # Steps:	
-# 1. Read azuredeploy.json with parameters saved in azuredeploy.parameters.json
-# 2. Save output from azuredeploy.json into output.parameters.json
-# 
+# 1. Reads azuredeploy.json with parameters saved in azuredeploy.parameters.json
+# 2. Creates Azure resources 
+# 3. Saves sensitive keys fetched during deployment to output.parameters.json
 #
 ##########################
 
@@ -40,7 +37,7 @@ $SubscriptionName = $JsonTemplateParam.parameters.subscriptionName.value
 $ResourceGroupName = $JsonTemplateParam.parameters.resourcesGroupName.value
 $ResourceGroupLocation = $JsonTemplateParam.parameters.resourcesGroupLocation.value
 
-Login-AzureRmAccount
+#Login-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
 # Create or update the resource group using the specified template file and template parameters file

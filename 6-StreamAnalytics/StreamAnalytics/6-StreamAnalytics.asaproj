@@ -28,13 +28,13 @@
     <Configure Include="Configuration.json">
       <SubType>JobConfig</SubType>
     </Configure>
-    <Configure Include="Inputs\Input.json">
+    <Configure Include="Inputs\EventHubInput.json">
       <SubType>Input</SubType>
     </Configure>
-    <Configure Include="Outputs\Output.json">
+    <Configure Include="Outputs\ServiceBusOutput.json">
       <SubType>Output</SubType>
     </Configure>
-    <Configure Include="Outputs\OutputDb.json">
+    <Configure Include="Outputs\SqlOutput.json">
       <SubType>Output</SubType>
     </Configure>
   </ItemGroup>

@@ -1,8 +1,7 @@
-
 ####################
 #
-#
-# Copy car_info.csv into Azure Blob Storage
+# Steps:	
+# 1. Copy car_info.csv into Azure Blob Storage
 #
 #
 ####################
@@ -28,12 +27,12 @@ $OutputParamsJson = Get-Content -Raw -Path $OutputParametersFile | ConvertFrom-J
 $StorageContainerName = $TemplateParamsJson.parameters.storageContainerName.value
 $StorageAccountName = $TemplateParamsJson.parameters.storageAccountName.value
 $StorageAccountKey = $OutputParamsJson.storageAccountKey.value
-$SubscriptionName = $JsonTemplateParam.parameters.subscriptionName.value
-$ResourceGroupName = $JsonTemplateParam.parameters.resourcesGroupName.value
+$SubscriptionName = $TemplateParamsJson.parameters.subscriptionName.value
+$ResourceGroupName = $TemplateParamsJson.parameters.resourcesGroupName.value
 
 Set-StrictMode -Version 3
 
-Login-AzureRmAccount
+#Login-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
 $Storage = Get-AzureRmStorageAccount -Name $StorageAccountName -ResourceGroupName $ResourceGroupName

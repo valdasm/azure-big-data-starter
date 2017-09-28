@@ -245,7 +245,7 @@
     <None Include="Azure.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Properties\PublishProfiles\meetupasa - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\meetupasa2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gmaps.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -298,6 +298,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

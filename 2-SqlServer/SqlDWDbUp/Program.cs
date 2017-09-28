@@ -54,7 +54,7 @@ namespace DataWarehouseDbUp
         static string GetDbConnString()
         {
             var databaseName = ConfigurationManager.AppSettings["DatabaseName"];
-            var serverName = ConfigurationManager.AppSettings["SqlDmServerInstance"];
+            var serverName = ConfigurationManager.AppSettings["ServerInstance"];
             var databaseUser = ConfigurationManager.AppSettings["DatabaseUser"];
             var databasePassword = ConfigurationManager.AppSettings["DatabasePassword"];
 

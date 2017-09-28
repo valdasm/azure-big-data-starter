@@ -1,9 +1,10 @@
 TODO:
 (/) 1. Powershell to copy reference data into BlobStorage
 (/) 2. Change Azure SQL into SQL Data Warehouse in deployment template
-3. Validate sql scripts deployment
+(/) 3. Validate sql scripts deployment
 4. Set AzureStreamAnalytics inputs / outputs / job
 5. WebApp Deployment
+- Doesn't fetch App.settings in Azure
 6. AzureDataFactory - Later
 7. DataLakeAnalytics - Later
 8. MachineLearning - Later

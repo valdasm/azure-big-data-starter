@@ -1,6 +1,8 @@
 ##########################
 #
-# Description
+# Steps:	
+# 1. Reads parameters and sensitive keys from azuredeploy.parameters.json and output.parameters.json
+# 2. Updates individual config files (make sure you have made a copy of XXX.config.sample)
 #
 #
 ##########################
@@ -10,7 +12,7 @@ Param(
     
     [string] $TemplateParametersFile = '..\1-Resources\azuredeploy.parameters.json',
 	[string] $OutputParametersFile = '..\1-Resources\output.parameters.json',
-	[string] $SqlServerConfigFile = '..\2-SqlServer\SqlDbUp\Azure.config',
+	[string] $SqlServerConfigFile = '..\2-SqlServer\SqlDWDbUp\Azure.config',
 	[string] $WebAppConfigFile = '..\7-WebApp\DashboardWebApp\Azure.config',
 	[string] $EventHubConfigFile = '..\8-EventApps\CarEventsSenderApp\Azure.config'
 
