@@ -31,6 +31,9 @@
     <Configure Include="Inputs\EventHubInput.json">
       <SubType>Input</SubType>
     </Configure>
+    <Configure Include="Inputs\ReferenceInput.json">
+      <SubType>Input</SubType>
+    </Configure>
     <Configure Include="Outputs\ServiceBusOutput.json">
       <SubType>Output</SubType>
     </Configure>
