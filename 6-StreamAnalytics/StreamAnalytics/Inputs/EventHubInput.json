@@ -1,12 +1,12 @@
 ﻿{
-  "Name": "Input",
+  "Name": "EventHubInput",
   "Type": "Data Stream",
   "DataSourceType": "Event Hub",
   "Sample": null,
   "EventHubProperties": {
     "ConsumerGroupName": null,
     "EventHubName": "carshub",
-    "ServiceBusNamespace": "meetupeventhub",
+    "ServiceBusNamespace": "xxx",
     "SharedAccessPolicyKey": null,
     "SharedAccessPolicyName": "RootManageSharedAccessKey"
   },

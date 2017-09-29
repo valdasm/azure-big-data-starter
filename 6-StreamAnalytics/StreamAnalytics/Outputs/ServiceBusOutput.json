@@ -7,7 +7,7 @@
   "TableStorageProperties": null,
   "ServiceBusQueueProperties": {
     "QueueName": "dashboardqueue",
-    "ServiceBusNamespace": "meetupservicebus",
+    "ServiceBusNamespace": "xxx",
     "SharedAccessPolicyKey": null,
     "SharedAccessPolicyName": "RootManageSharedAccessKey"
   },

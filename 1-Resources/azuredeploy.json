@@ -23,7 +23,7 @@
     "storageContainerName": {
       "type": "string",
       "metadata": {
-        "description": "Blob Storage container name. Used in a powershell script"
+        "description": "Blob Storage container name."
       }
     },
     "resourcesGroupLocation": {
@@ -228,22 +228,6 @@
       ]
     },
     {
-      "type": "Microsoft.StreamAnalytics/StreamingJobs",
-      "apiVersion": "2016-03-01",
-      "name": "[parameters('streamAnalyticsJobName')]",
-      "location": "[parameters('resourcesGroupLocation')]",
-      "properties": {
-        "sku": {
-          "name": "standard"
-        },
-        "outputErrorPolicy": "stop",
-        "eventsOutOfOrderPolicy": "adjust",
-        "eventsOutOfOrderMaxDelayInSeconds": 0,
-        "eventsLateArrivalMaxDelayInSeconds": 5,
-        "dataLocale": "en-US"
-      }
-    },
-    {
       "name": "[parameters('sqlServerName')]",
       "type": "Microsoft.Sql/servers",
       "location": "[parameters('resourcesGroupLocation')]",
@@ -283,6 +267,134 @@
           "type": "firewallrules"
         }
       ]
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/StreamingJobs",
+      "apiVersion": "2016-03-01",
+      "name": "[parameters('streamAnalyticsJobName')]",
+      "location": "[parameters('resourcesGroupLocation')]",
+      "dependsOn": [
+        "[parameters('sqlDWDBName')]",
+        "[parameters('serviceBusQueueName')]",
+        "[parameters('eventHubName')]",
+        "[parameters('storageAccountName')]"
+      ],
+      "properties": {
+        "sku": {
+          "name": "standard"
+        },
+        "outputErrorPolicy": "stop",
+        "eventsOutOfOrderPolicy": "adjust",
+        "eventsOutOfOrderMaxDelayInSeconds": 0,
+        "eventsLateArrivalMaxDelayInSeconds": 5,
+        "dataLocale": "en-US",
+        "inputs": [
+          {
+            "name": "EventHubInput",
+            "properties": {
+              "type": "Stream",
+              "datasource": {
+                "type": "Microsoft.ServiceBus/EventHub",
+                "properties": {
+                  "serviceBusNamespace": "[parameters('namespaceName')]",
+                  "eventHubName": "[parameters('eventHubName')]",
+                  "consumerGroupName": null,
+                  "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                  "sharedAccessPolicyKey": "[listkeys(variables('eventHubResourceId'), variables('ehVersion')).primaryKey]"
+                }
+              },
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8",
+                  "format": "LineSeparated"
+                }
+              }
+            }
+          },
+          {
+            "name": "ReferenceInput",
+            "properties": {
+              "type": "Reference",
+              "datasource": {
+                "type": "Microsoft.Storage/Blob",
+                "properties": {
+                  "storageAccounts": [
+                    {
+                      "accountName": "[parameters('storageAccountName')]",
+                      "accountKey": "[listKeys(variables('storageResourceId'), variables('storageVersion')).keys[0].value]"
+                    }
+                  ],
+                  "container": "[parameters('storageContainerName')]",
+                  "pathPattern": "ReferenceData\\car_info.csv",
+                  "dateFormat": "yyyy/MM/dd",
+                  "timeFormat": "HH"
+                }
+              },
+              "serialization": {
+                "type": "Csv",
+                "properties": {
+                  "fieldDelimiter": ",",
+                  "encoding": "UTF8"
+                }
+              }
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "ServiceBusOutput",
+            "properties": {
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8",
+                  "format": "LineSeparated"
+                }
+              },
+              "datasource": {
+                "type": "Microsoft.ServiceBus/Queue",
+                "properties": {
+                  "serviceBusNamespace": "[parameters('serviceBusNamespaceName')]",
+                  "queueName": "[parameters('serviceBusQueueName')]",
+                  "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                  "sharedAccessPolicyKey": "[listkeys(variables('serviceBusResourceId'), variables('sbVersion')).primaryKey]"
+                }
+              }
+            }
+          },
+          {
+            "name": "SqlOutput",
+            "properties": {
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8",
+                  "format": "LineSeparated"
+                }
+              },
+              "datasource": {
+                "type": "Microsoft.Sql/Server/Database",
+                "properties": {
+                  "server": "[parameters('sqlServerName')]",
+                  "database": "[parameters('sqlDWDBName')]",
+                  "user": "[parameters('sqlDWDBAdminName')]",
+                  "table": "dbo.CarHealthStatus",
+                  "password": "[parameters('sqlDWAdminPassword')]"
+                }
+              }
+            }
+          }
+        ],
+        "transformation": {
+          "name": "Transformation",
+          "properties": {
+            "streamingUnits": 1,
+            "query": "select * into ServiceBusOutput from EventHubInput;\r\n\r\nselect carid, devicetime into SqlOutput from EventHubInput;\r\n"
+          }
+        },
+        "functions": []
+      }
     },
     {
       "name": "[parameters('appServiceName')]",
@@ -327,9 +439,17 @@
       "type": "string",
       "value": "[listkeys(variables('eventHubResourceId'), variables('ehVersion')).primaryConnectionString]"
     },
+    "EventHubKey": {
+      "type": "string",
+      "value": "[listkeys(variables('eventHubResourceId'), variables('ehVersion')).primaryKey]"
+    },
     "ServiceBusConnString": {
       "type": "string",
       "value": "[listkeys(variables('serviceBusResourceId'), variables('sbVersion')).primaryConnectionString]"
+    },
+    "ServiceBusKey": {
+      "type": "string",
+      "value": "[listkeys(variables('serviceBusResourceId'), variables('sbVersion')).primaryKey]"
     },
     "storageAccountKey": {
       "type": "string",

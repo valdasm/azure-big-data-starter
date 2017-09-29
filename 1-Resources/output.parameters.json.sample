@@ -3,10 +3,18 @@
                                "Type":  "String",
                                "Value":  ""
                            },
+    "eventHubKey":  {
+                        "Type":  "String",
+                        "Value":  ""
+                    },
     "serviceBusConnString":  {
                                  "Type":  "String",
                                  "Value":  ""
                              },
+    "serviceBusKey":  {
+                          "Type":  "String",
+                          "Value":  ""
+                      },
     "storageAccountKey":  {
                               "Type":  "String",
                               "Value":  ""

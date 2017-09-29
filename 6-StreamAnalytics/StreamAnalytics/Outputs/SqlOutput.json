@@ -6,9 +6,9 @@
   "SQLDatabaseProperties": {
     "Database": "streamingdb",
     "Password": null,
-    "Server": "carsqlserver.database.windows.net",
-    "Table": "dbo.Car_Health_Status",
-    "User": "servadmin"
+    "Server": "xxx.database.windows.net",
+    "Table": "dbo.CarHealthStatus",
+    "User": "admin"
   },
   "TableStorageProperties": null,
   "ServiceBusQueueProperties": null,
