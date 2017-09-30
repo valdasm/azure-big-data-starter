@@ -86,7 +86,7 @@ Ride.csv file contains telemetry events and only car id. Car_info.csv file is a 
 **4** Add your IP to Azure SQL Server firewall.
 
 
-![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/b7369b26-9dc2-4cbf-b24b-f4e10bbdf0e7/Firewall%20settings%20-%20Microsoft%20Azure%20-%20Google%20Chrome.jpg)
+![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/b7369b26-9dc2-4cbf-b24b-f4e10bbdf0e7/Firewall%20settings%20-%20Microsoft%20Azure%20-%20Google%20Chrome_medium.jpg)
 
 
 **5** Deploy database objects by running *2-SqlServer\SqlDWDbUp* project.
