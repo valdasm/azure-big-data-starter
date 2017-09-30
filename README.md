@@ -22,14 +22,14 @@ Azure offers many different PaaS services for stream and batch workloads. Since 
 * 7-WebApp - *SignalR + Google Map dashboard*
 * 8-EventApps - *Sending telemetry data to Event Hubs*
 
-#### Prerequisites
+### Prerequisites
 * [Azure Subscription](https://azure.microsoft.com/en-us/free/)
 * [Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/)
 * [Azure PowerShell 2](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-4.4.0)
 * [Azure Stream Analytics for VS2015](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-tools-for-visual-studio)
 * [Azure Data Factory for VS2015](https://marketplace.visualstudio.com/items?itemName=AzureDataFactory.MicrosoftAzureDataFactoryToolsforVisualStudio2015)
 
-#### Data
+### Data
 
 **1-Resources\Data\ride.csv**
 
@@ -51,7 +51,7 @@ Ride.csv file contains telemetry events and only car id. Car_info.csv file is a 
 | 2		| Lada      | Niva	|
 | 3		| Porsche	| 911	|
 
-#### Objectives
+### Objectives
 1. Create all resouces using Azure ARM and fetch required keys 
 2. Ingress car events using Azure Event Hub
 3. Transform, enrich and aggregate events using Azure Stream Analytics
@@ -114,7 +114,7 @@ Ride.csv file contains telemetry events and only car id. Car_info.csv file is a 
 ![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/780d84dd-0efe-45a7-809f-64985e1ad324/fileCCodeGitazure-big-data-starter8-EventAppsCarEventsSenderAppbinDebugazure-patterns-big-data.EXE.jpg)
 
 
-**4** Connect to [SQL Data Warehouse](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/sql-data-warehouse-query-visual-studio) and query *dbo.CarHealthStatus*
+**4** [Connect to SQL Data Warehouse](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/sql-data-warehouse-query-visual-studio) and query *dbo.CarHealthStatus*
 
 
 ![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/3846e1d4-b095-47aa-88af-08da9e53da62/azure-big-data-starter%20(Running)%20-%20Microsoft%20Visual%20Studio.jpg)
@@ -167,7 +167,7 @@ GROUP BY Ref.Make, TumblingWindow(SECOND, 5);
 * Stream Analytics projects cannot be under folders in a solution, due to some issues with the VS component. Due to this limitation Stream Analytics hangs at the root level.
 * ARM template for Stream Analytics doesn't support Data Lake store and PowerBI as outputs. 
 * Data Lake Store and required Azure AD App.
-* Azure SQL Datawarehouse 
+* Columnstore in Azure SQL Datawarehouse doesn't like small inserts and transient data 
  
 ---
 
