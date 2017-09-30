@@ -10,6 +10,7 @@ namespace Models
     {
         public string CarId { get; set; }
         public DateTime DeviceTime { get; set; }
+        public string Make { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public double EngineRpm { get; set; }

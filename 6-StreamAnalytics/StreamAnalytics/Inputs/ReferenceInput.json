@@ -9,7 +9,7 @@
   "BlobReferenceProperties": {
     "Container": "data",
     "DateFormat": "yyyy/MM/dd",
-    "PathPattern": "ReferenceData\\car_info.csv",
+    "PathPattern": "ReferenceData//car_info.csv",
     "StorageAccounts": [
       {
         "AccountKey": null,
@@ -21,7 +21,7 @@
   "Serialization": {
     "Encoding": "UTF8",
     "Type": "Csv",
-    "FieldDelimiter": ",",
+    "FieldDelimiter": ";",
     "Format": null
   },
   "DataSourceCredentialDomain": "12d762e2-17cd-42b3-8037-6a17f2c4db28.StreamAnalyticsCredential",

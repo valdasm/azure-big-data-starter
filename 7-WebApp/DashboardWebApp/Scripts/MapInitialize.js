@@ -11,7 +11,7 @@ $(function () {
     var chat = $.connection.hubConnection;
     console.log(chat);
     // Create a function that the hub can call to broadcast messages.
-    chat.client.sendLocation = function (lat, lng, time, speed, rpm) {
+    chat.client.sendLocation = function (make, lat, lng, time, speed, rpm) {
         new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
@@ -19,6 +19,7 @@ $(function () {
         });
         //map.setCenter({ lat: lat, lng: lng });
         //console.log("Time: " + time);
+        $('#make').text(make);
         $('#deviceTime').text(time);
         $('#speed').text(speed);
         $('#rpm').text(rpm);

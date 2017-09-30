@@ -1,3 +1,20 @@
-﻿select * into output from input;
+﻿SELECT 
+	Input.carid, 
+	System.Timestamp as deviceTime,
+	AVG(Input.SpeedOdb) as speedOdb
+INTO SqlOutput 
+FROM EventHubInput AS Input
+GROUP BY Input.carid, TumblingWindow(SECOND, 10);
 
-select carid, devicetime into outputdb from input;
+SELECT
+    Ref.Make,
+    System.Timestamp as deviceTime,
+    AVG(Input.Longitude) as longitude,
+    AVG(Input.Latitude) as latitude,
+    AVG(Input.EngineRpm) as engineRpm,
+    AVG(Input.SpeedOdb) as speedOdb
+INTO ServiceBusOutput 
+FROM EventHubInput AS Input
+INNER JOIN [ReferenceInput] AS Ref
+ON Input.carid = Ref.carid
+GROUP BY Ref.Make, TumblingWindow(SECOND, 5);

@@ -12,9 +12,9 @@ namespace WebApplication1.Controllers
     public class LocationController : ApiController
     {
         [Route("Location/SendLocation")]
-        public void SendLocation(double latitude, double longnitude, DateTime deviceTime, double speed, double rpm)
+        public void SendLocation(string make, double latitude, double longnitude, DateTime deviceTime, double speed, double rpm)
         {
-            HubConnection.Send(latitude, longnitude, deviceTime, speed, rpm);
+            HubConnection.Send(make, latitude, longnitude, deviceTime, speed, rpm);
         }
     }
 }

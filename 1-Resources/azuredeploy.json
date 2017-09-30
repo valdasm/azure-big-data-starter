@@ -326,7 +326,7 @@
                     }
                   ],
                   "container": "[parameters('storageContainerName')]",
-                  "pathPattern": "ReferenceData\\car_info.csv",
+                  "pathPattern": "ReferenceData//car_info.csv",
                   "dateFormat": "yyyy/MM/dd",
                   "timeFormat": "HH"
                 }
@@ -334,7 +334,7 @@
               "serialization": {
                 "type": "Csv",
                 "properties": {
-                  "fieldDelimiter": ",",
+                  "fieldDelimiter": ";",
                   "encoding": "UTF8"
                 }
               }
@@ -390,7 +390,7 @@
           "name": "Transformation",
           "properties": {
             "streamingUnits": 1,
-            "query": "select * into ServiceBusOutput from EventHubInput;\r\n\r\nselect carid, devicetime into SqlOutput from EventHubInput;\r\n"
+            "query": "SELECT \r\n\tInput.carid, \r\n\tSystem.Timestamp as deviceTime,\r\n\tAVG(Input.SpeedOdb) as speedOdb\r\nINTO SqlOutput \r\nFROM EventHubInput AS Input\r\nGROUP BY Input.carid, TumblingWindow(SECOND, 10);\r\n\r\nSELECT\r\n    Ref.Make,\r\n    System.Timestamp as deviceTime,\r\n    AVG(Input.Longitude) as longitude,\r\n    AVG(Input.Latitude) as latitude,\r\n    AVG(Input.EngineRpm) as engineRpm,\r\n    AVG(Input.SpeedOdb) as speedOdb\r\nINTO ServiceBusOutput \r\nFROM EventHubInput AS Input\r\nINNER JOIN [ReferenceInput] AS Ref\r\nON Input.carid = Ref.carid\r\nGROUP BY Ref.Make, TumblingWindow(SECOND, 5);"
           }
         },
         "functions": []

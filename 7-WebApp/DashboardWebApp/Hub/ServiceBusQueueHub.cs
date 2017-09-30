@@ -32,9 +32,15 @@ namespace WebApplication1.Hub
                     var json = message.GetBody<string>();
                     var deserialized = JsonConvert.DeserializeObject<CarDashboardDto>(json);
                     
-                    HubConnection.Send(deserialized.Latitude, deserialized.Longitude, deserialized.DeviceTime, deserialized.SpeedOdb, deserialized.EngineRpm);
-                    message.Complete();
+                    HubConnection.Send(
+                        deserialized.Make, 
+                        deserialized.Latitude, 
+                        deserialized.Longitude, 
+                        deserialized.DeviceTime, 
+                        deserialized.SpeedOdb, 
+                        deserialized.EngineRpm);
 
+                    message.Complete();
 
                 }
                 catch (Exception ex)

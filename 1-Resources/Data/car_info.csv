@@ -1,4 +1,4 @@
-﻿carId,make,type
-1,Honda,Civic
-2,Mitsubishi,Lancer
-3,Mazda,3
+﻿carId;make;type
+1;Honda;Civic
+2;Mitsubishi;Lancer
+3;Mazda;3

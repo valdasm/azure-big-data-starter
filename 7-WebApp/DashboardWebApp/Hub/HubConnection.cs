@@ -9,10 +9,10 @@ namespace WebApplication1.Hub
 {
     public class HubConnection : Microsoft.AspNet.SignalR.Hub
     {
-        public static void Send(double lat, double lng, DateTime deviceTime, double speed, double rpm)
+        public static void Send(string make, double lat, double lng, DateTime deviceTime, double speed, double rpm)
         {
             var hub = GlobalHost.ConnectionManager.GetHubContext<HubConnection>();
-            hub.Clients.All.SendLocation(lat, lng, deviceTime.ToString(), speed.ToString("0.##"), rpm.ToString("0.##"));
+            hub.Clients.All.SendLocation(make, lat, lng, deviceTime.ToString(), speed.ToString("0.##"), rpm.ToString("0.##"));
             
         }
     }

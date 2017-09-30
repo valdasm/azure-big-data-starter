@@ -12,7 +12,7 @@ namespace azure_patterns_big_data.Utils
 {
     public class LogReader
     {
-        public List<T> FileToDto<T>(string path, string delimeter = ",", bool hasHeader = true)
+        public List<T> FileToDto<T>(string path, string delimeter = ";", bool hasHeader = true)
         {
             var events = new List<T>();
 
@@ -23,7 +23,6 @@ namespace azure_patterns_big_data.Utils
                 csv.Configuration.HasHeaderRecord = hasHeader;
 
                 csv.Configuration.RegisterClassMap(typeof (CarEventsMapper));
-                csv.Configuration.RegisterClassMap(typeof(CarDashboardMapper));
 
                 while (csv.Read())
                 {
