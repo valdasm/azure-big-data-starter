@@ -9,7 +9,7 @@
   "BlobReferenceProperties": {
     "Container": "data",
     "DateFormat": "yyyy/MM/dd",
-    "PathPattern": "ReferenceData//car_info.csv",
+    "PathPattern": "ReferenceData/car_info.csv",
     "StorageAccounts": [
       {
         "AccountKey": null,

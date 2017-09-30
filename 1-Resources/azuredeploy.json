@@ -326,7 +326,7 @@
                     }
                   ],
                   "container": "[parameters('storageContainerName')]",
-                  "pathPattern": "ReferenceData//car_info.csv",
+                  "pathPattern": "ReferenceData/car_info.csv",
                   "dateFormat": "yyyy/MM/dd",
                   "timeFormat": "HH"
                 }
