@@ -26,12 +26,13 @@ Azure offers many different PaaS services for stream and batch workloads. Since 
 * [Azure Subscription](https://azure.microsoft.com/en-us/free/)
 * [Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/)
 * [Azure PowerShell 2](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-4.4.0)
-* [Azure Stream Analytics for VS 2015](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-tools-for-visual-studio)
+* [Azure Stream Analytics for VS2015](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-tools-for-visual-studio)
 * [Azure Data Factory for VS2015](https://marketplace.visualstudio.com/items?itemName=AzureDataFactory.MicrosoftAzureDataFactoryToolsforVisualStudio2015)
 
 #### Data
 
 **1-Resources\Data\ride.csv**
+
 This is a 25-minutes ride information (1 row per 1 second), including such details as lat, long, speed, rpm, throttle, fuel consumption, etc.  
 
 | CarId | Device Time				| Longitude | Latitude	| SpeedOdb	| HP power	| ...	|
@@ -41,6 +42,7 @@ This is a 25-minutes ride information (1 row per 1 second), including such detai
 | 1		| 13-Sep-2014 10:20:41.356	| 25,24500	| 54,7292	| 83		| 100		| ...	|
 
 **1-Resources\Data\car_info.csv**
+
 Ride.csv file contains telemetry events and only car id. Car_info.csv file is a slowly changing data for enrichment - vehicle make and type. 
 
 | CarId | Make		| Type	|
@@ -48,6 +50,13 @@ Ride.csv file contains telemetry events and only car id. Car_info.csv file is a 
 | 1		| Honda		| Civic |
 | 2		| Lada      | Niva	|
 | 3		| Porsche	| 911	|
+
+#### Objectives
+1. Create all resouces using Azure ARM and fetch required keys 
+2. Ingress car events using Azure Event Hub
+3. Transform, enrich and aggregate events using Azure Stream Analytics
+4. Visualize current vehicle location in a custom web app
+5. Load aggregated events into Azure SQL Data Warehouse
 
 ---
 
@@ -71,7 +80,7 @@ Ride.csv file contains telemetry events and only car id. Car_info.csv file is a 
 - Uploads reference data for data enrichment
 
 
-![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/9ea79981-d6e0-4c56-8ffd-9a02070a9b21/StreamAnalyticsDemo%20-%20Microsoft%20Azure%20-%20Google%20Chrome_2.jpg)
+![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/9ea79981-d6e0-4c56-8ffd-9a02070a9b21/StreamAnalyticsDemo%20-%20Microsoft%20Azure%20-%20Google%20Chrome_2_medium.jpg)
 
 
 **4** Add your IP to Azure SQL Server firewall.
@@ -128,7 +137,7 @@ GROUP BY Input.carid, TumblingWindow(SECOND, 10);
 **5** Monitor dashboard web app
 
 
-![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/d7a731c5-3b29-4c71-9d27-e8fc605a40c2/localhost11282%20-%20Google%20Chrome.jpg)
+![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/d7a731c5-3b29-4c71-9d27-e8fc605a40c2/localhost11282%20-%20Google%20Chrome_medium.jpg)
 
 
 Azure Stream Analytics query that sends data to Service Bus and eventually to the web app:
@@ -158,6 +167,7 @@ GROUP BY Ref.Make, TumblingWindow(SECOND, 5);
 * Stream Analytics projects cannot be under folders in a solution, due to some issues with the VS component. Due to this limitation Stream Analytics hangs at the root level.
 * ARM template for Stream Analytics doesn't support Data Lake store and PowerBI as outputs. 
 * Data Lake Store and required Azure AD App.
+* Azure SQL Datawarehouse 
  
 ---
 
