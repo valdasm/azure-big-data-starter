@@ -10,7 +10,7 @@ Azure offers many different PaaS services for stream and batch workloads. Since 
 ![Silvrback blog image sb_float_center](https://silvrback.s3.amazonaws.com/uploads/63050ce6-d2f8-4e8c-a610-5184abdaac73/Azure%20Big%20Data%20(1).png)
 
 
-#### Structure
+### Structure
 
 * 0-Deployment - *PowerShell scripts*
 * 1-Resources - *ARM templates and csv telemetry data files*
