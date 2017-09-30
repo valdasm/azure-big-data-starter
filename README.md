@@ -178,3 +178,11 @@ GROUP BY Ref.Make, TumblingWindow(SECOND, 5);
 * Introduce batch workload with Data Lake Analytics 
 * Add orchestration using Azure Data Factory (v2?)
 * Add an anomaly detection experiment using Machine Learning (v2?)
+
+---
+
+# Links
+* [Azure Big Data Architectural Style](https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/big-data)
+* [Azure Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction)
+* [Azure Data Warehouse](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/)
+* [Azure ARM deployment and templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)
