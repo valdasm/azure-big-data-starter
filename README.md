@@ -172,12 +172,11 @@ GROUP BY Ref.Make, TumblingWindow(SECOND, 5);
 ---
 
 # To Do
-* Azure ASA inputs, outputs, and the query deploys from 1-Resources\azuredeploy.json. Use 6-StreamAnalytics project* Figure out how to deal with sensitive info in ASA config files and GIT.
-* Start ASA after deployment. 
+* Replace batch processing with Synapse Analytics
+* Add orchestration using Azure Data Factory
 * Deploy Dashboard web app to Azure (Issues with app.config).
-* Introduce batch workload with Data Lake Analytics 
-* Add orchestration using Azure Data Factory (v2?)
-* Add an anomaly detection experiment using Machine Learning (v2?)
+* Azure ASA deployment optimization and autostart
+* Add an anomaly detection experiment using Azure Machine Learning
 
 ---
 
